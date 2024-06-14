@@ -4,9 +4,10 @@ statlib::statlib(){
     lokalizacja();
     whitelist = whitelistToJson();
     gracze = tablica(whitelist);
-    nc = podajNick();
-    uuid = nickToUuid(gracze,nc);
-    playtimeticks = czasTick(uuid);
+    //nc = podajNick();
+    //uuid = nickToUuid(gracze,nc);
+    //playtimeticks = czasTick(uuid);
+    zapiszDoPliku(gracze);
 }
 
 statlib::~statlib(){
@@ -49,6 +50,7 @@ vector<Nick> statlib::tablica(json j){
             Nick nick;
             nick.uuid = item["uuid"].get<string>();
             nick.name = item["name"].get<string>();
+            nick.godziny = 0;
             gracze.push_back(nick);
         }
     return gracze;
@@ -63,7 +65,7 @@ string statlib::podajNick(){
 
 string statlib::nickToUuid(vector<Nick> gracze, string nc){
     string uuid = "";
-    for(int i = 0; i<=gracze.size(); i++){
+    for(int i = 0; i<gracze.size(); i++){
         if(gracze[i].name == nc){
             uuid = gracze[i].uuid;
             break;
@@ -79,44 +81,67 @@ string statlib::nickToUuid(vector<Nick> gracze, string nc){
     }
 }
 
-int statlib::czasTick(string uuid){
+int statlib::czasGodz(string uuid){
     string file = pathstat+uuid+".json";
     ifstream stats;
     stats.open(file);
     if(!stats.good()){
-        cout<<"Nie mozna otworzyc pliku statystyk! "<<file;
-        exit(1);
-    }
-    json s;
-    stats >> s;
-    stats.close();
-    int wersja = s["DataVersion"].get<int>();
-    if (wersja<2711)
-    {
-        int playtimeticks = 0;
-        try{
-            playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_one_minute"].get<int>();
-        }
-        catch(...){
-            cout<<"Blad przy odczytaniu statystki";
-            exit(1);
-        }
-        return playtimeticks;
+        cout<<"Nie mozna otworzyc pliku statystyk! "<<file<<endl;
+        //exit(1);
+        return 0;
     }else{
-        int playtimeticks = 0;
-        try{
-            playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_time"].get<int>();
+        json s;
+        stats >> s;
+        stats.close();
+        int wersja = s["DataVersion"].get<int>();
+        int playtimehours = 0;
+        if (wersja<2711)
+        {
+            int playtimeticks = 0;
+            try{
+                playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_one_minute"].get<int>();
+            }
+            catch(...){
+                cout<<"Blad przy odczytaniu statystki";
+                exit(1);
+            }
+            playtimehours = playtimeticks/72000;
+            return playtimehours;
+        }else{
+            int playtimeticks = 0;
+            try{
+                playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_time"].get<int>();
+            }
+            catch(...){
+                cout<<"Blad przy odczytaniu statystki";
+                exit(1);
+            }
+            playtimehours = playtimeticks/72000;
+            return playtimehours;
         }
-        catch(...){
-            cout<<"Blad przy odczytaniu statystki";
-            exit(1);
-        }
-        return playtimeticks;
     }
     return 0;
 }
 
-void statlib::wypiszWGodzinach(int playtimeticks, string nc){
-    int playtimehours = playtimeticks/72000;
-    cout<<"Czas gry gracza "<<nc<<" to: "<<playtimehours<<"h"<<endl;
+// int statlib::wypiszWGodzinach(int playtimeticks, string nc){
+//     int playtimehours = playtimeticks/72000;
+//     //cout<<"Czas gry gracza "<<nc<<" to: "<<playtimehours<<"h"<<endl;
+//     return playtimehours;
+// }
+
+void statlib::zapiszDoPliku(vector<Nick> gracze){
+    ofstream plik;
+    plik.open("stat.out", ios::out);
+    for (int i = 0; i < gracze.size(); i++)
+    {
+        gracze[i].godziny = czasGodz(gracze[i].uuid);
+        plik<<gracze[i].name<<" "<<gracze[i].uuid<<" "<<gracze[i].godziny<<endl;
+    }
+
+    // for (int i = 0; i < gracze.size(); i++)
+    // {
+    //     cout<<gracze[i].name<<" "<<gracze[i].godziny<<endl;
+    // }
+    
+
 }

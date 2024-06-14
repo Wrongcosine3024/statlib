@@ -3,7 +3,6 @@
 int main(){
     statlib statystyki;
     
-    statystyki.wypiszWGodzinach(statystyki.playtimeticks,statystyki.nc);
-
+    //statystyki.wypiszWGodzinach(statystyki.playtimeticks,statystyki.nc);
     return 0;
 }

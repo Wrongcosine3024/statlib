@@ -8,6 +8,7 @@ using json = nlohmann::json;
 struct Nick{
     string uuid;
     string name;
+    int godziny;
 };
 
 class statlib
@@ -37,7 +38,9 @@ public:
 
     string nickToUuid(vector<Nick> gracze, string nc);
 
-    int czasTick(string uuid);
+    int czasGodz(string uuid);
 
-    void wypiszWGodzinach(int playtimeticks, string nc);
+    // void wypiszWGodzinach(int playtimeticks, string nc);
+
+    void zapiszDoPliku(vector<Nick> gracze);
 };
