@@ -142,6 +142,4 @@ void statlib::zapiszDoPliku(vector<Nick> gracze){
     // {
     //     cout<<gracze[i].name<<" "<<gracze[i].godziny<<endl;
     // }
-    
-
 }
