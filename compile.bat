@@ -1,0 +1,1 @@
+g++ -IZ:/jsoncpp/ main.cpp statlib.cpp -o build/statlib.exe
