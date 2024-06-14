@@ -1,1 +1,1 @@
-g++ -I/home/frank/jsoncpp_src/ main.cpp statlib.cpp -o build/statlib
+g++ -I/home/frank/jsoncpp_source/statlib/ main.cpp statlib.cpp -o build/statlib
