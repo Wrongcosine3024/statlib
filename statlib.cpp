@@ -51,8 +51,6 @@ void statlib::lokalizacja(){
         
         pathwhitelist = conf[0].value;
         pathstat = conf[1].value;
-        string w;
-        cout<<pathwhitelist<<" "<<pathstat<<endl;
     }
 }
 
