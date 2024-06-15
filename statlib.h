@@ -34,7 +34,7 @@ public:
 
     vector<Nick> tablica(json whitelist);
 
-    string podajNick();
+    // string podajNick();
 
     // string nickToUuid(vector<Nick> gracze, string nc);
 

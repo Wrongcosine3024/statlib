@@ -44,12 +44,15 @@ void statlib::lokalizacja(){
         {
             config temp_config;
             temp_config.property = temp_var;
+            plik>>temp_var;
             temp_config.value = temp_var;
             conf.push_back(temp_config);   
         }
         
         pathwhitelist = conf[0].value;
         pathstat = conf[1].value;
+        string w;
+        cout<<pathwhitelist<<" "<<pathstat<<endl;
     }
 }
 
@@ -59,7 +62,7 @@ json statlib::whitelistToJson(){
     file = pathwhitelist+"whitelist.json";
     whitelist.open(file);
     if (!whitelist.good()) {
-        std::cerr << "Nie mozna otworzyc pliku whitelisty." << std::endl;
+        std::cerr << "Nie mozna otworzyc pliku whitelisty." << endl;
         exit(1);
     }
     json j;
@@ -81,12 +84,12 @@ vector<Nick> statlib::tablica(json j){
     return gracze;
 }
 
-string statlib::podajNick(){
-    cout<<"Nick gracza: ";
-    string nc;
-    cin>>nc;
-    return nc;
-}
+// string statlib::podajNick(){
+//     cout<<"Nick gracza: ";
+//     string nc;
+//     cin>>nc;
+//     return nc;
+// }
 
 // string statlib::nickToUuid(vector<Nick> gracze, string nc){
 //     string uuid = "";
