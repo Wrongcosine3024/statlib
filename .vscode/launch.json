@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "z:/jsoncpp",
-      "program": "z:/jsoncpp/build/Debug/outDebug",
+      "program": "z:/jsoncpp/build/statlib.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
