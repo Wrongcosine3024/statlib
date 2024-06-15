@@ -6,6 +6,8 @@
 !.vscode/*.code-snippets
 build/*
 
+*.out
+
 *.exe
 
 # Local History for Visual Studio Code
