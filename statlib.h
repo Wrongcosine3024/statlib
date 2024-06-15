@@ -36,7 +36,7 @@ public:
 
     string podajNick();
 
-    string nickToUuid(vector<Nick> gracze, string nc);
+    // string nickToUuid(vector<Nick> gracze, string nc);
 
     int czasGodz(string uuid);
 

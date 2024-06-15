@@ -2,6 +2,8 @@ build/*
 
 *.out
 
+*.conf
+
 *.exe
 
 # Local History for Visual Studio Code

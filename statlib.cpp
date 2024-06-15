@@ -18,14 +18,39 @@ statlib::~statlib(){
 }
 
 void statlib::lokalizacja(){
-    string wh = "";
-    string stat = "";
-    cout<<"Podaj folder z plikiem whitelisty: ";
-    cin>>wh;
-    pathwhitelist = wh;
-    cout<<"Podaj folder ze statystykami: ";
-    cin>>stat;
-    pathstat = stat;
+    ifstream plik;
+    plik.open("localization.conf");
+    if(!plik.good()){
+        ofstream plikcr;
+        plikcr.open("localization.conf");
+        if (!plikcr.good())
+        {
+            cerr<<"Nie mozna utworzyc pliku konfiguracyjnego";
+            exit(1);
+        }
+        plikcr<<"whitelist_full_dir "<<"/path/to/whitelist/"<<endl;
+        plikcr<<"stats_full_dir "<<"/path/to/world/stats/";
+        plikcr.close();
+        exit(1);
+    }else{
+        struct config
+        {
+            string property;
+            string value;
+        };
+        vector<config> conf;
+        string temp_var;
+        while (plik>>temp_var)
+        {
+            config temp_config;
+            temp_config.property = temp_var;
+            temp_config.value = temp_var;
+            conf.push_back(temp_config);   
+        }
+        
+        pathwhitelist = conf[0].value;
+        pathstat = conf[1].value;
+    }
 }
 
 json statlib::whitelistToJson(){
@@ -33,8 +58,8 @@ json statlib::whitelistToJson(){
     string file;
     file = pathwhitelist+"whitelist.json";
     whitelist.open(file);
-    if (!whitelist.is_open()) {
-        std::cerr << "Nie można otworzyć pliku JSON." << std::endl;
+    if (!whitelist.good()) {
+        std::cerr << "Nie mozna otworzyc pliku whitelisty." << std::endl;
         exit(1);
     }
     json j;
@@ -63,30 +88,30 @@ string statlib::podajNick(){
     return nc;
 }
 
-string statlib::nickToUuid(vector<Nick> gracze, string nc){
-    string uuid = "";
-    for(int i = 0; i<gracze.size(); i++){
-        if(gracze[i].name == nc){
-            uuid = gracze[i].uuid;
-            break;
-        }
-    }
-    if (uuid == "")
-    {
-        cout<<"Podana nazwa nie znajduje sie w pliku whitelist.json"<<endl;
-        exit(1);
-    }else{
-        cout<<uuid<<endl;
-        return uuid;
-    }
-}
+// string statlib::nickToUuid(vector<Nick> gracze, string nc){
+//     string uuid = "";
+//     for(int i = 0; i<gracze.size(); i++){
+//         if(gracze[i].name == nc){
+//             uuid = gracze[i].uuid;
+//             break;
+//         }
+//     }
+//     if (uuid == "")
+//     {
+//         cerr<<"Podana nazwa nie znajduje sie w pliku whitelist.json"<<endl;
+//         exit(1);
+//     }else{
+//         cout<<uuid<<endl;
+//         return uuid;
+//     }
+// }
 
 int statlib::czasGodz(string uuid){
     string file = pathstat+uuid+".json";
     ifstream stats;
     stats.open(file);
     if(!stats.good()){
-        cout<<"Nie mozna otworzyc pliku statystyk! "<<file<<endl;
+        cerr<<"Nie mozna otworzyc pliku statystyk! "<<file<<endl;
         //exit(1);
         return 0;
     }else{
@@ -102,7 +127,7 @@ int statlib::czasGodz(string uuid){
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_one_minute"].get<int>();
             }
             catch(...){
-                cout<<"Blad przy odczytaniu statystki";
+                cerr<<"Blad przy odczytaniu statystki";
                 exit(1);
             }
             playtimehours = playtimeticks/72000;
@@ -113,7 +138,7 @@ int statlib::czasGodz(string uuid){
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_time"].get<int>();
             }
             catch(...){
-                cout<<"Blad przy odczytaniu statystki";
+                cerr<<"Blad przy odczytaniu statystki";
                 exit(1);
             }
             playtimehours = playtimeticks/72000;
