@@ -9,6 +9,9 @@ struct Nick{
     string uuid;
     string name;
     int godziny;
+    int deathcount;
+    int gameexit;
+    int netheriteszt;
 };
 
 class statlib
@@ -38,7 +41,7 @@ public:
 
     // string nickToUuid(vector<Nick> gracze, string nc);
 
-    int czasGodz(string uuid);
+    Nick stat(string uuid);
 
     // void wypiszWGodzinach(int playtimeticks, string nc);
 

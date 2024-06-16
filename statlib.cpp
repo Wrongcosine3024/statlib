@@ -107,14 +107,16 @@ vector<Nick> statlib::tablica(json j){
 //     }
 // }
 
-int statlib::czasGodz(string uuid){
+Nick statlib::stat(string uuid){
+    Nick stat;
+    stat = {uuid,"",0,0,0,0};
     string file = pathstat+uuid+".json";
     ifstream stats;
     stats.open(file);
     if(!stats.good()){
         cerr<<"Nie mozna otworzyc pliku statystyk! "<<file<<endl;
         //exit(1);
-        return 0;
+        return stat;
     }else{
         json s;
         stats >> s;
@@ -126,27 +128,35 @@ int statlib::czasGodz(string uuid){
             int playtimeticks = 0;
             try{
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_one_minute"].get<int>();
+                stat.deathcount = s["stats"]["minecraft:custom"]["minecraft:deaths"].get<int>();
+                stat.gameexit = s["stats"]["minecraft:custom"]["minecraft:leave_game"].get<int>();
+                stat.netheriteszt = s["stats"]["minecraft:crafted"]["minecraft:netherite_ingot"].get<int>();
             }
             catch(...){
                 cerr<<"Blad przy odczytaniu statystki";
                 exit(1);
             }
             playtimehours = playtimeticks/72000;
-            return playtimehours;
+            stat.godziny = playtimehours;
+            return stat;
         }else{
             int playtimeticks = 0;
             try{
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_time"].get<int>();
+                stat.deathcount = s["stats"]["minecraft:custom"]["minecraft:deaths"].get<int>();
+                stat.gameexit = s["stats"]["minecraft:custom"]["minecraft:leave_game"].get<int>();
+                stat.netheriteszt = s["stats"]["minecraft:crafted"]["minecraft:netherite_ingot"].get<int>();
             }
             catch(...){
                 cerr<<"Blad przy odczytaniu statystki";
                 exit(1);
             }
             playtimehours = playtimeticks/72000;
-            return playtimehours;
+            stat.godziny = playtimehours;
+            return stat;
         }
     }
-    return 0;
+    return stat;
 }
 
 // int statlib::wypiszWGodzinach(int playtimeticks, string nc){
@@ -160,8 +170,11 @@ void statlib::zapiszDoPliku(vector<Nick> gracze){
     plik.open("stat.out", ios::out);
     for (int i = 0; i < gracze.size(); i++)
     {
-        gracze[i].godziny = czasGodz(gracze[i].uuid);
-        plik<<gracze[i].name<<" "<<gracze[i].uuid<<" "<<gracze[i].godziny<<endl;
+        gracze[i].godziny = stat(gracze[i].uuid).godziny;
+        gracze[i].deathcount = stat(gracze[i].uuid).deathcount;
+        gracze[i].gameexit = stat(gracze[i].uuid).gameexit;
+        gracze[i].netheriteszt = stat(gracze[i].uuid).netheriteszt;
+        plik<<gracze[i].name<<" "<<gracze[i].uuid<<" "<<gracze[i].godziny<<" "<<gracze[i].deathcount<<" "<<gracze[i].gameexit<<" "<<gracze[i].netheriteszt<<endl;
     }
 
     // for (int i = 0; i < gracze.size(); i++)
