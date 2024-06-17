@@ -128,13 +128,33 @@ Nick statlib::stat(string uuid){
             int playtimeticks = 0;
             try{
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_one_minute"].get<int>();
-                stat.deathcount = s["stats"]["minecraft:custom"]["minecraft:deaths"].get<int>();
-                stat.gameexit = s["stats"]["minecraft:custom"]["minecraft:leave_game"].get<int>();
-                stat.netheriteszt = s["stats"]["minecraft:crafted"]["minecraft:netherite_ingot"].get<int>();
             }
             catch(...){
-                cerr<<"Blad przy odczytaniu statystki";
-                exit(1);
+                cerr<<"Blad przy odczytaniu statystki godzin dla gracza "<<uuid<<endl;
+            }
+            try
+            {
+                stat.deathcount = s["stats"]["minecraft:custom"]["minecraft:deaths"].get<int>();
+            }
+            catch(...)
+            {
+                cerr<<"Blad przy odczytaniu statystki smierci dla gracza "<<uuid<<endl;
+            }
+            try
+            {
+                stat.gameexit = s["stats"]["minecraft:custom"]["minecraft:leave_game"].get<int>();
+            }
+            catch(...)
+            {
+                cerr<<"Blad przy odczytaniu statystki wyjsc z gry dla gracza "<<uuid<<endl;
+            }
+            try
+            {
+                stat.netheriteszt = s["stats"]["minecraft:crafted"]["minecraft:netherite_ingot"].get<int>();
+            }
+            catch(...)
+            {
+                cerr<<"Blad przy odczytaniu statystki sztabek netherytu dla gracza "<<uuid<<endl;
             }
             playtimehours = playtimeticks/72000;
             stat.godziny = playtimehours;
@@ -143,13 +163,33 @@ Nick statlib::stat(string uuid){
             int playtimeticks = 0;
             try{
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_time"].get<int>();
-                stat.deathcount = s["stats"]["minecraft:custom"]["minecraft:deaths"].get<int>();
-                stat.gameexit = s["stats"]["minecraft:custom"]["minecraft:leave_game"].get<int>();
-                stat.netheriteszt = s["stats"]["minecraft:crafted"]["minecraft:netherite_ingot"].get<int>();
             }
             catch(...){
-                cerr<<"Blad przy odczytaniu statystki";
-                exit(1);
+                cerr<<"Blad przy odczytaniu statystki godzin dla gracza "<<uuid<<endl;
+            }
+            try
+            {
+                stat.deathcount = s["stats"]["minecraft:custom"]["minecraft:deaths"].get<int>();
+            }
+            catch(...)
+            {
+                cerr<<"Blad przy odczytaniu statystki smierci dla gracza "<<uuid<<endl;
+            }
+            try
+            {
+                stat.gameexit = s["stats"]["minecraft:custom"]["minecraft:leave_game"].get<int>();
+            }
+            catch(...)
+            {
+                cerr<<"Blad przy odczytaniu statystki wyjsc z gry dla gracza "<<uuid<<endl;
+            }
+            try
+            {
+                stat.netheriteszt = s["stats"]["minecraft:crafted"]["minecraft:netherite_ingot"].get<int>();
+            }
+            catch(...)
+            {
+                cerr<<"Blad przy odczytaniu statystki sztabek netherytu dla gracza "<<uuid<<endl;
             }
             playtimehours = playtimeticks/72000;
             stat.godziny = playtimehours;
