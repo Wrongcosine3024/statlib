@@ -10,7 +10,8 @@ Program was tested only on minecraft versions 1.16 and 1.19, so it can detect wh
 **Very important** ;)  
 It's my **first serious** C++ project which I decided to publish on github. I'm aware that its probably bad written so any suggestions are welcome.
 ## Build
-In order to build statlib I recommend using g++ compiler. You have to use -I flag followed by the directory of this repository (i.e. -I/home/user/Documents/statlib).  
+In order to build statlib I recommend using g++ compiler. You have to use -I flag followed by the directory of this repository (i.e. -I/home/user/Documents/statlib).
+
 Example build command:  
 ```g++ -I./ main.cpp statlib.cpp -o statlib```
 ## Branches
