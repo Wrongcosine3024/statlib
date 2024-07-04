@@ -5,6 +5,7 @@
 - [Branches](#branches)
 - [Error handling](#error-handling)
 - [License and third-party libraries](#license-and-third-party-libraries)
+  - [JSON for modern C++](#JSON-for-modern-C++)
 ## Overview
 Statlib is a simple application for reading and summarizing minecraft statistics for spigot servers.
 
@@ -35,5 +36,6 @@ Initally statlib was console application designed to read playtime only (main br
 ## Error handling
 Statlib has implemented basic error handling, if it can't read statistic (because it changed name or sth) it will just print out error via console **and will continue execution**, for example: if there is a player on whitelist who never joined a server (so the server hasn't created statistics file for that specific player) program will not crash (because there is no file to read), it will just print error and try to read statistics for next player.
 ## License and third-party libraries
-This project is released under [MIT License](https://github.com/Wrongcosine3024/statlib/blob/main/LICENSE).  
+This project is released under [MIT License](https://github.com/Wrongcosine3024/statlib/blob/main/LICENSE).
+### JSON for modern C++
 It was possible to make this project by use of the _JSON for modern C++_ library written by **Niels Lohmann** (see [NOTICE](https://github.com/Wrongcosine3024/statlib/blob/main/NOTICE))
