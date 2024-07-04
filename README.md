@@ -10,7 +10,7 @@
 Statlib is a simple application for reading and summarizing minecraft statistics for spigot servers. Statlib has been written object-oriented so it can be used in other projects as _Statlib_ class.
 
 Minecraft statistics for each player are stored under '<server_dir>/world/stats/<player_uuid>.json'.
-Statlib gets player UUIDs from whitelist file **which must be supplied**, stores it, and if the file exists - opens <uuid>.json under given directory.
+Statlib gets player UUIDs from whitelist file **which must be supplied**, stores it, and if the file exists - opens '<uuid>.json' under given directory.
 Simple as that!
 
 Program was tested only on minecraft versions 1.16 and 1.19 (spigot servers), so it can detect whether the play time statistic is called _play_one_minute_ or _play_time_ (see _Technical changes_ under [this link](https://www.minecraft.net/en-us/article/minecraft-snapshot-21w16a))
