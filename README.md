@@ -16,7 +16,8 @@ There are four branches in this repository:
 - main (current branch)
 - files
 - files-wo-cli
-- ost  
+- ost
+
 Initally statlib was console application designed to read playtime only (main branch) but I came up with an idea to use it as autonomous script:  
 Under the "files" branch location of whitelist and statistics folder are still given via cli but output is saved to a file.  
 Under the "files-wo-cli" branch program will check if there is a file called "localization.conf", if not it will create it. From now on, locations of whitelist and statistics directory will be given through that file.  
