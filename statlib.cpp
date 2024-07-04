@@ -19,10 +19,10 @@ statlib::~statlib(){
 void statlib::lokalizacja(){
     string wh = "";
     string stat = "";
-    cout<<"Podaj folder z plikiem whitelisty: ";
+    cout<<"Whitelist directory: ";
     cin>>wh;
     pathwhitelist = wh;
-    cout<<"Podaj folder ze statystykami: ";
+    cout<<"Statistics directory: ";
     cin>>stat;
     pathstat = stat;
 }
@@ -33,7 +33,7 @@ json statlib::whitelistToJson(){
     file = pathwhitelist+"whitelist.json";
     whitelist.open(file);
     if (!whitelist.is_open()) {
-        std::cerr << "Nie można otworzyć pliku JSON." << std::endl;
+        std::cerr << "Could not open JSON file." << std::endl;
         exit(1);
     }
     json j;
@@ -71,7 +71,7 @@ string statlib::nickToUuid(vector<Nick> gracze, string nc){
     }
     if (uuid == "")
     {
-        cout<<"Podana nazwa nie znajduje sie w pliku whitelist.json"<<endl;
+        cout<<"Given nick does not exists in whitelist.json"<<endl;
         exit(1);
     }else{
         cout<<uuid<<endl;
@@ -84,7 +84,7 @@ int statlib::czasTick(string uuid){
     ifstream stats;
     stats.open(file);
     if(!stats.good()){
-        cout<<"Nie mozna otworzyc pliku statystyk! "<<file;
+        cout<<"Could not open statistics file "<<file;
         exit(1);
     }
     json s;
@@ -98,7 +98,7 @@ int statlib::czasTick(string uuid){
             playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_one_minute"].get<int>();
         }
         catch(...){
-            cout<<"Blad przy odczytaniu statystki";
+            cout<<"Error while reading statistic";
             exit(1);
         }
         return playtimeticks;
@@ -108,7 +108,7 @@ int statlib::czasTick(string uuid){
             playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_time"].get<int>();
         }
         catch(...){
-            cout<<"Blad przy odczytaniu statystki";
+            cout<<"Error while reading statistic";
             exit(1);
         }
         return playtimeticks;
@@ -118,5 +118,5 @@ int statlib::czasTick(string uuid){
 
 void statlib::wypiszWGodzinach(int playtimeticks, string nc){
     int playtimehours = playtimeticks/72000;
-    cout<<"Czas gry gracza "<<nc<<" to: "<<playtimehours<<"h"<<endl;
+    cout<<"Playtime of player "<<nc<<" is: "<<playtimehours<<"h"<<endl;
 }
