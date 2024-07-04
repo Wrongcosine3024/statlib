@@ -36,7 +36,7 @@ Initially statlib was a console application designed to read playtime only (main
 
 **Only main and ost branches are fully translated into English!** (only main and ost should be considered for usage, main for cli and ost for scripts)
 ## Error handling
-Statlib has implemented basic error handling, if it can't read statistic (because it changed name or something) it will just print out error via console **and will continue execution**, for example: if there is a player on whitelist who never joined a server (so the server hasn't created statistics file for that specific player) program will not crash (because there is no file to read), it will just print an error (and save 0 for every statistic for that player) and try to read statistics for next player.
+Statlib has basic error handling implemented, if it can't read statistic (because it changed name or something) it will just print out error via console **and will continue execution**, for example: if there is a player on whitelist who never joined a server (so the server hasn't created statistics file for that specific player) program will not crash (because there is no file to read), it will just print an error (and save 0 for every statistic for that player) and try to read statistics for next player.
 ## License and third-party libraries
 This project is released under the [MIT License](https://github.com/Wrongcosine3024/statlib/blob/main/LICENSE).
 ### JSON for modern C++
