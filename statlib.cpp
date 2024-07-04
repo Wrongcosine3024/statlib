@@ -25,7 +25,7 @@ void statlib::lokalizacja(){
         plikcr.open("localization.conf");
         if (!plikcr.good())
         {
-            cerr<<"Nie mozna utworzyc pliku konfiguracyjnego";
+            cerr<<"Could not create configuration file";
             exit(1);
         }
         plikcr<<"whitelist_full_dir "<<"/path/to/whitelist/"<<endl;
@@ -60,7 +60,7 @@ json statlib::whitelistToJson(){
     file = pathwhitelist+"whitelist.json";
     whitelist.open(file);
     if (!whitelist.good()) {
-        std::cerr << "Nie mozna otworzyc pliku whitelisty." << endl;
+        std::cerr << "Could not open whitelist file" << endl;
         exit(1);
     }
     json j;
@@ -114,7 +114,7 @@ Nick statlib::stat(string uuid){
     ifstream stats;
     stats.open(file);
     if(!stats.good()){
-        cerr<<"Nie mozna otworzyc pliku statystyk! "<<file<<endl;
+        cerr<<"Could not open statistics file "<<file<<endl;
         //exit(1);
         return stat;
     }else{
@@ -130,7 +130,7 @@ Nick statlib::stat(string uuid){
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_one_minute"].get<int>();
             }
             catch(...){
-                cerr<<"Blad przy odczytaniu statystki godzin dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading playtime statistic for "<<uuid<<endl;
             }
             try
             {
@@ -138,7 +138,7 @@ Nick statlib::stat(string uuid){
             }
             catch(...)
             {
-                cerr<<"Blad przy odczytaniu statystki smierci dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading deathcount for "<<uuid<<endl;
             }
             try
             {
@@ -146,7 +146,7 @@ Nick statlib::stat(string uuid){
             }
             catch(...)
             {
-                cerr<<"Blad przy odczytaniu statystki wyjsc z gry dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading game exit count for "<<uuid<<endl;
             }
             try
             {
@@ -154,7 +154,7 @@ Nick statlib::stat(string uuid){
             }
             catch(...)
             {
-                cerr<<"Blad przy odczytaniu statystki sztabek netherytu dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading netherite ingot count for "<<uuid<<endl;
             }
             playtimehours = playtimeticks/72000;
             stat.godziny = playtimehours;
@@ -165,7 +165,7 @@ Nick statlib::stat(string uuid){
                 playtimeticks = s["stats"]["minecraft:custom"]["minecraft:play_time"].get<int>();
             }
             catch(...){
-                cerr<<"Blad przy odczytaniu statystki godzin dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading playtime statistic for "<<uuid<<endl;
             }
             try
             {
@@ -173,7 +173,7 @@ Nick statlib::stat(string uuid){
             }
             catch(...)
             {
-                cerr<<"Blad przy odczytaniu statystki smierci dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading deathcount for "<<uuid<<endl;
             }
             try
             {
@@ -181,7 +181,7 @@ Nick statlib::stat(string uuid){
             }
             catch(...)
             {
-                cerr<<"Blad przy odczytaniu statystki wyjsc z gry dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading game exit count for "<<uuid<<endl;
             }
             try
             {
@@ -189,7 +189,7 @@ Nick statlib::stat(string uuid){
             }
             catch(...)
             {
-                cerr<<"Blad przy odczytaniu statystki sztabek netherytu dla gracza "<<uuid<<endl;
+                cerr<<"Error while reading netherite ingot count for "<<uuid<<endl;
             }
             playtimehours = playtimeticks/72000;
             stat.godziny = playtimehours;
