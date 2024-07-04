@@ -1,5 +1,5 @@
 ## Table of contents
-- [Overwiev](#overview)
+- [Overview](#overview)
   - [Very important](#very-important-)
 - [Build](#build)
 - [Branches](#branches)
@@ -7,7 +7,7 @@
 - [License and third-party libraries](#license-and-third-party-libraries)
   - [JSON for modern C++](#JSON-for-modern-c)
 ## Overview
-Statlib is a simple application for reading and summarizing minecraft statistics for spigot servers.
+Statlib is a simple application for reading and summarizing minecraft statistics for spigot servers. Statlib has been written object oriented so it can be used in other projects as _statlib_ class.
 
 Minecraft statistics for each player are stored under <server_dir>/world/stats/<player_uuid>.json
 Statlib get player uuid from whitelist file **which must be supplied**, stores it, and if file exists - opens uuid.json under given directory.
