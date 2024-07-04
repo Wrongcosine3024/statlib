@@ -5,7 +5,7 @@
 - [Branches](#branches)
 - [Error handling](#error-handling)
 - [License and third-party libraries](#license-and-third-party-libraries)
-  - [JSON for modern C++](#JSON-for-modern-C++)
+  - [JSON for modern C++](#JSON-for-modern-c)
 ## Overview
 Statlib is a simple application for reading and summarizing minecraft statistics for spigot servers.
 
