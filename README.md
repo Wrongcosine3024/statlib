@@ -7,7 +7,7 @@ Simple as that!
 
 Program was tested only on minecraft versions 1.16 and 1.19, so it can detect wheter the play time statistic is called play_one_minute or play_time (see _Technical changes_ under [this link](https://www.minecraft.net/en-us/article/minecraft-snapshot-21w16a))
 
-*Very important*;)
+**Very important** ;)  
 It's my **first serious** c++ project which I decided to publish on github. I'm aware that its probably bad written so any suggestions are welcome.
 ## Build
 In order to build statlib I recommend using g++ compiler. You have to use -I flag followed by the directory of this repository (i.e. -I/home/user/Documents/statlib).
