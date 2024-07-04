@@ -33,8 +33,9 @@ Initally statlib was console application designed to read playtime only (main br
 - under the "files" branch location of whitelist and statistics folder are still given via cli but output is saved to a file
 - under the "files-wo-cli" branch program will check if there is a file called "localization.conf", if not it will create it. From now on, locations of whitelist and statistics directory will be given through that file
 - the "ost" branch is the same as "files-wo-cli" but instead of reading only playtime, program additionally reads player deathcount, game exit count, and number of netherite ingots created by player
+**Only main and ost branch are fully translated into English!**
 ## Error handling
-Statlib has implemented basic error handling, if it can't read statistic (because it changed name or sth) it will just print out error via console **and will continue execution**, for example: if there is a player on whitelist who never joined a server (so the server hasn't created statistics file for that specific player) program will not crash (because there is no file to read), it will just print error and try to read statistics for next player.
+Statlib has implemented basic error handling, if it can't read statistic (because it changed name or sth) it will just print out error via console **and will continue execution**, for example: if there is a player on whitelist who never joined a server (so the server hasn't created statistics file for that specific player) program will not crash (because there is no file to read), it will just print error (and save 0 for every statistic for that player) and try to read statistics for next player.
 ## License and third-party libraries
 This project is released under [MIT License](https://github.com/Wrongcosine3024/statlib/blob/main/LICENSE).
 ### JSON for modern C++
