@@ -226,7 +226,7 @@ void statlib::zapiszDoPliku(vector<Nick> gracze){
         gracze[i].diamondoreszt = stats.diamondoreszt;
         plik<<gracze[i].name<<" "<<gracze[i].uuid<<" "<<gracze[i].godziny<<" "<<gracze[i].deathcount<<" "<<gracze[i].gameexit<<" "<<gracze[i].diamondoreszt<<" "<<gracze[i].netheriteszt<<endl;
     }
-
+    plik.close();
     // for (int i = 0; i < gracze.size(); i++)
     // {
     //     cout<<gracze[i].name<<" "<<gracze[i].godziny<<endl;
