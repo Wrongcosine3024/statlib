@@ -156,6 +156,14 @@ Nick statlib::stat(string uuid){
             {
                 cerr<<"Error while reading netherite ingot count for "<<uuid<<endl;
             }
+            try
+            {
+                stat.diamondoreszt = s["stats"]["minecraft:mined"]["minecraft:diamond_ore"].get<int>();
+            }
+            catch(...)
+            {
+                cerr<<"Error while reading mined diamond ore count for "<<uuid<<endl;
+            }
             playtimehours = playtimeticks/72000;
             stat.godziny = playtimehours;
             return stat;
