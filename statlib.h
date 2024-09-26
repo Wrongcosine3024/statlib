@@ -18,33 +18,33 @@ struct Nick{
 class statlib
 {
 private:
-    string pathstat;
-    string pathwhitelist;
+    string pathstat; // statistics directory
+    string pathwhitelist; // whitelist directory
 public:
-// zmienne
+// zmienne/variables
     json whitelist;
-    vector<Nick> gracze;
-    string nc;
+    vector<Nick> gracze; // array of players created from whitelist object
+    string nc; // nick
     string uuid;
-    int playtimeticks;
+    int playtimeticks; // playtime in ticks
 // metody
-    statlib();
+    statlib(); // constructor
 
-    ~statlib();
+    ~statlib(); // destructor
 
-    void lokalizacja();
+    void lokalizacja(); // gets whitelist and statistics directory from "localization.conf", if file does not exists creates it
 
-    json whitelistToJson();
+    json whitelistToJson(); // loads file to an json object (from nlohmann/json)
 
-    vector<Nick> tablica(json whitelist);
+    vector<Nick> tablica(json whitelist); // creates Nick type array from json object
 
     // string podajNick();
 
     // string nickToUuid(vector<Nick> gracze, string nc);
 
-    Nick stat(string uuid);
+    Nick stat(string uuid); // reads statistics and saves them to the array
 
     // void wypiszWGodzinach(int playtimeticks, string nc);
 
-    void zapiszDoPliku(vector<Nick> gracze);
+    void zapiszDoPliku(vector<Nick> gracze); // saves output to a file
 };
