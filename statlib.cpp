@@ -109,7 +109,7 @@ vector<Nick> statlib::tablica(json j){
 
 Nick statlib::stat(string uuid){
     Nick stat;
-    stat = {uuid,"",0,0,0,0};
+    stat = {uuid,"",0,0,0,0,0};
     string file = pathstat+uuid+".json";
     ifstream stats;
     stats.open(file);
@@ -210,11 +210,13 @@ void statlib::zapiszDoPliku(vector<Nick> gracze){
     plik.open("stat.out", ios::out);
     for (int i = 0; i < gracze.size(); i++)
     {
-        gracze[i].godziny = stat(gracze[i].uuid).godziny;
-        gracze[i].deathcount = stat(gracze[i].uuid).deathcount;
-        gracze[i].gameexit = stat(gracze[i].uuid).gameexit;
-        gracze[i].netheriteszt = stat(gracze[i].uuid).netheriteszt;
-        plik<<gracze[i].name<<" "<<gracze[i].uuid<<" "<<gracze[i].godziny<<" "<<gracze[i].deathcount<<" "<<gracze[i].gameexit<<" "<<gracze[i].netheriteszt<<endl;
+        Nick stats = stat(gracze[i].uuid);
+        gracze[i].godziny = stats.godziny;
+        gracze[i].deathcount = stats.deathcount;
+        gracze[i].gameexit = stats.gameexit;
+        gracze[i].netheriteszt = stats.netheriteszt;
+        gracze[i].diamondoreszt = stats.diamondoreszt;
+        plik<<gracze[i].name<<" "<<gracze[i].uuid<<" "<<gracze[i].godziny<<" "<<gracze[i].deathcount<<" "<<gracze[i].gameexit<<" "<<gracze[i].diamondoreszt<<" "<<gracze[i].netheriteszt<<endl;
     }
 
     // for (int i = 0; i < gracze.size(); i++)

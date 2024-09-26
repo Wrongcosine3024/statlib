@@ -12,6 +12,7 @@ struct Nick{
     int deathcount;
     int gameexit;
     int netheriteszt;
+    int diamondoreszt;
 };
 
 class statlib
